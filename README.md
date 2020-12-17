@@ -2,24 +2,27 @@
 #### Matheus Gratz
 ---
 <strong>Agenda</strong>
-- Introduction
-  a) Task
-  b) Personal Objectives
+- [Introduction](#intro)
+  a) [Task](#task)
+  b) [Personal Objectives](#obj)
 - Steps
-  1) Gather the data
-  2) Concatenate (Extract)
-  3) Summarize (Transform)
-  4) Export (Load)
-- Links to Tableau Public
+  1) [Gather the data](#gather)
+  2) [Concatenate (Extract)](#concatenate)
+  3) [Summarize (Transform)](#summarize)
+  4) [Export (Load)](#export)
+- [Links to Tableau Public](#links)
 ---
-#### Introduction
+#### Introduction 
+<a name="intro"></a>
 
-##### Task
+##### Task 
+<a name="task"></a>
 The task in this assignment is to aggregate the data found in the Citi Bike Trip History Logs and find two unexpected phenomena.
 
 Design 2-5 visualizations for each discovered phenomena (4-10 total). You may work with a timespan of your choosing.
 
-##### Objectives
+##### Objectives 
+<a name="obj"></a>
 
 Selected Timespan: All trips generated in 2019
 Total trips: 20,551,517 trips
@@ -31,7 +34,8 @@ Question to be answered:
 4) What is/are the most relevant stations, taking into account the total trips started on that station?
 5) What is/are the most relevant routes (From Start Station - To End Station)?
 
-##### Gather the data
+##### Gather the data 
+<a name="gather"></a>
 [CitiBike Data Page](https://s3.amazonaws.com/tripdata/index.html)
 * 201901-citibike-tripdata.csv
 * 201902-citibike-tripdata.csv
@@ -46,9 +50,10 @@ Question to be answered:
 * 201911-citibike-tripdata.csv
 * 201912-citibike-tripdata.csv
 
-##### Concatenate
+##### Concatenate 
+<a name="concatenate"></a>
 
-This piece of code represent the concatenate process. For full code, please check the notebook [here]().
+This piece of code represent the concatenate process. For full code, please check the notebook [here](https://github.com/matheusgratz/tableau-challenge/blob/main/CitiBike%20Data%20ETL%20-%20Gratz%2C%20M..ipynb).
 
 ```python
 extension = 'csv'
@@ -56,7 +61,8 @@ all_filenames = [i for i in glob.glob('*.{}'.format(extension))]
 combined_df = pd.concat([pd.read_csv(f) for f in all_filenames ])
 ```
 
-##### Summarize
+##### Summarize 
+<a name="summarize"></a>
 First we need to convert the columns with date-time as a string to a real date-time type.
 ```python
 # Split string date column to take out decimals
@@ -101,7 +107,8 @@ fromto_summary = combined_df.groupby(['start station id', 'start station name', 
 )
 ```
 
-##### Export
+##### Export 
+<a name="export"></a>
 
 Generate the CSV Files:
 
@@ -111,7 +118,11 @@ weeknum_summary.to_csv('weeknum_summary.csv')
 fromto_summary.to_csv('from_to_stations.csv')
 ```
 
-##### Link to Tableau Public
+##### Links to Tableau Public 
+<a name="links"></a>
+
+Please find the twbx file [here.](https://github.com/matheusgratz/tableau-challenge/blob/main/Citibike%20-%20Gratz%2C%20M.%20-%20Tableau%20Challenge.twbx)
+
 * [Story](https://public.tableau.com/profile/matheus.gratz#!/vizhome/Citibike-GratzM_-TableauChallenge/CitiBike-MGratz)
 * [Seasons Dashboard](https://public.tableau.com/profile/matheus.gratz#!/vizhome/Citibike-GratzM_-TableauChallenge/SeasonDashboard)
 * [Gender Dashboard](https://public.tableau.com/profile/matheus.gratz#!/vizhome/Citibike-GratzM_-TableauChallenge/GenderDashboard)
